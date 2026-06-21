@@ -1,0 +1,12 @@
+# Variables de entorno / secretos
+.env
+*.env
+
+# Imagenes
+*.png
+
+# Reportes / paginas generadas
+*.html
+
+# Datos
+*.csv
