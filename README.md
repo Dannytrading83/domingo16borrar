@@ -1,7 +1,9 @@
-# Este es al proyecto que nos hará ricos!
+# Este es el proyecto que nos va a hacer ricos !
 
-## INSTALACION
+## Instalacion
 
-```powershell
+Instalar las dependencias:
+
+```bash
 pip install -r requirements.txt
 ```
