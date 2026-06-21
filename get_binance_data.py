@@ -1,10 +1,10 @@
 import requests
 import pandas as pd
 
-from config import BINANCE_API_ENDPOINT, BINANCE_API_KEY
+from config import BINANCE_API_ENDPOINT, BINANCE_API_KEY, TIMEFRAME
 
 SYMBOL = "BTCUSDT"
-INTERVAL = "1d"
+INTERVAL = TIMEFRAME.lower()
 
 COLUMNS = [
     "open_time", "open", "high", "low", "close", "volume",
@@ -34,4 +34,4 @@ def get_btc_daily_data(limit=1000):
 if __name__ == "__main__":
     data = get_btc_daily_data()
     print(data.tail())
-    data.to_csv(f"{SYMBOL}_{INTERVAL}.csv", index=False)
+    data.to_csv(f"data/{SYMBOL}_{INTERVAL}.csv", index=False)
