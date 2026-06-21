@@ -1,12 +1,11 @@
-# Variables de entorno / secretos
+# Secrets and local environment
 .env
-*.env
+.env.*
+!.env.example
 
-# Imagenes
-*.png
-
-# Reportes / paginas generadas
-*.html
-
-# Datos
+# Generated/exported data
 *.csv
+
+# Generated images and reports
+*.png
+*.html
