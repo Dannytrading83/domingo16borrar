@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-TIMEFRAME = "1H"
+TIMEFRAME = "4H"  #Timeframe for data analysis (e.g., "1h", "4h", "1d")
 
 VALOR_EMA_RAPIDA = 12
 VALOR_EMA_LENTA = 26
