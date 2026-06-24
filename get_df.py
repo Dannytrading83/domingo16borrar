@@ -28,6 +28,6 @@ euusd_1M["dow"] = euusd_1M.index.map(lambda ts: get_dow(ts)[0])
 euusd_1M["dow_name"] = euusd_1M.index.map(lambda ts: get_dow(ts)[1])
 
 # --- Guardar ---
-euusd_1M.to_csv(OUTPUT)
+euusd_1M.to_csv(OUTPUT, encoding="utf-8-sig")
 
-print(euusd_1M)
+print(euusd_1M.to_string())
