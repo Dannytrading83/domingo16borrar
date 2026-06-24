@@ -12,6 +12,7 @@ import pandas as pd
 
 from utils.dow import get_dow
 from utils.hora_usa import add_hora_ny
+from utils.max_dia import add_max_dia
 
 # --- Rutas ---
 DATA_DIR = Path(__file__).resolve().parent / "data"
@@ -26,6 +27,9 @@ euusd_1M = euusd_1M.set_index("timestamp")
 
 # --- Hora NY ---
 euusd_1M = add_hora_ny(euusd_1M)
+
+# --- Máximo del día ---
+euusd_1M = add_max_dia(euusd_1M)
 
 # --- DOW ---
 euusd_1M["dow"] = euusd_1M.index.map(lambda ts: get_dow(ts)[0])
