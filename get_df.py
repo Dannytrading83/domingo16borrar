@@ -11,6 +11,7 @@ from pathlib import Path
 import pandas as pd
 
 from utils.dow import get_dow
+from utils.hora_usa import add_hora_ny
 
 # --- Rutas ---
 DATA_DIR = Path(__file__).resolve().parent / "data"
@@ -22,6 +23,9 @@ OUTPUT = DATA_DIR / "euusd_1M.csv"
 euusd_1M = pd.read_csv(SOURCE, parse_dates=["Etc/UTC"])
 euusd_1M = euusd_1M.rename(columns={"Etc/UTC": "timestamp"})
 euusd_1M = euusd_1M.set_index("timestamp")
+
+# --- Hora NY ---
+euusd_1M = add_hora_ny(euusd_1M)
 
 # --- DOW ---
 euusd_1M["dow"] = euusd_1M.index.map(lambda ts: get_dow(ts)[0])
