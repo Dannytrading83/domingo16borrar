@@ -2,22 +2,19 @@ from pathlib import Path
 
 import yfinance as yf
 
-from config import TICKER_YAHOO, TIMEFRAME
+from config import TICKER_YAHOO, YAHOO_TIMEFRAME
 
-# yfinance no soporta 4H nativo -> se mapea al intervalo más cercano disponible
-TIMEFRAME_MAP = {
-    "1H": "1h",
-    "4H": "1h",
-    "1D": "1d",
+PERIOD_MAP = {
+    "1m": "7d", "2m": "60d", "5m": "60d", "15m": "60d",
+    "30m": "60d", "60m": "60d", "1h": "60d", "1d": "2y",
 }
-INTERVAL = TIMEFRAME_MAP.get(TIMEFRAME, "1d")
-PERIOD = "60d" if INTERVAL == "1h" else "2y"
+PERIOD = PERIOD_MAP.get(YAHOO_TIMEFRAME, "60d")
 
 DATA_DIR = Path(__file__).resolve().parent / "data"
-OUTPUT = DATA_DIR / f"{TICKER_YAHOO}_{TIMEFRAME}.csv"
+OUTPUT = DATA_DIR / f"{TICKER_YAHOO}_{YAHOO_TIMEFRAME}.csv"
 
 
-def get_yahoo_data(ticker=TICKER_YAHOO, interval=INTERVAL, period=PERIOD):
+def get_yahoo_data(ticker=TICKER_YAHOO, interval=YAHOO_TIMEFRAME, period=PERIOD):
     df = yf.download(ticker, interval=interval, period=period, auto_adjust=True, progress=False)
     df.columns = df.columns.get_level_values(0)
     df.index.name = "open_time"
