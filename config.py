@@ -18,4 +18,4 @@ ALPACA_API_SECRET = os.getenv("ALPACA_API_SECRET")
 # TICKER_YAHOO = "TSLA"  # Yahoo Finance ticker symbol for the stock (e.g., "AAPL", "GOOGL", "MSFT")
 YAHOO_TIMEFRAME = "5m"  # Default timeframe for Yahoo Finance downloads
 
-LISTA_TICKERS = ["AAPL", "GOOGL", "MSFT", "AMZN", "TSLA"]  # List of tickers for analysis
+LISTA_TICKERS = ["AAPL", "GOOGL", "MSFT", "AMZN", "TSLA", "FB"]  # List of tickers for analysis
