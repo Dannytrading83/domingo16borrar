@@ -1,5 +1,6 @@
 from pathlib import Path
 
+import pandas as pd
 import yfinance as yf
 
 from config import LISTA_TICKERS, YAHOO_TIMEFRAME
@@ -21,9 +22,25 @@ def get_yahoo_data(ticker, interval=YAHOO_TIMEFRAME, period=PERIOD):
     return df
 
 
+def append_yahoo_data(ticker, output):
+    new_df = get_yahoo_data(ticker)
+
+    if output.exists():
+        existing = pd.read_csv(output, index_col="open_time", parse_dates=True)
+        combined = pd.concat([existing, new_df])
+        combined = combined[~combined.index.duplicated(keep="last")]
+        combined.sort_index(inplace=True)
+        nuevas = len(combined) - len(existing)
+    else:
+        combined = new_df
+        nuevas = len(combined)
+
+    combined.to_csv(output)
+    return len(combined), nuevas
+
+
 if __name__ == "__main__":
     for ticker in LISTA_TICKERS:
         output = DATA_DIR / f"{ticker}_{YAHOO_TIMEFRAME}.csv"
-        data = get_yahoo_data(ticker)
-        data.to_csv(output)
-        print(f"{ticker}: {len(data)} filas -> {output.name}")
+        total, nuevas = append_yahoo_data(ticker, output)
+        print(f"{ticker}: {nuevas} filas nuevas añadidas | total: {total} -> {output.name}")
