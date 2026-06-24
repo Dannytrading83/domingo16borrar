@@ -18,7 +18,7 @@ def plot_close_price(data_path, charts_dir=CHARTS_DIR):
     plt.plot(df["open_time"], df["close"])
     plt.title(f"{name} Close Price")
     plt.xlabel("Fecha")
-    plt.ylabel("Precio de cierre (USDT)")
+    plt.ylabel("Precio de cierre (USD)")
     plt.tight_layout()
     plt.savefig(output_path)
     plt.close()

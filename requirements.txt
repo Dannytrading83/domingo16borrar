@@ -15,8 +15,8 @@ plotly
 mplfinance
 
 # Datos de mercado / brokers
+alpaca-py
 yfinance
-ccxt
 alpha_vantage
 polygon-api-client
 
